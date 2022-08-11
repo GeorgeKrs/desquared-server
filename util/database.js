@@ -8,7 +8,7 @@ const mongoConnect = (callback) => {
     "mongodb+srv://test_user:WYmVOrb92AuKRcXq@cluster0.p7g32f8.mongodb.net/?retryWrites=true&w=majority"
   )
     .then((client) => {
-      console.log("Connected Successfully!");
+      console.log("Connected to database.");
       database = client.db("restaurant-app");
       callback();
     })

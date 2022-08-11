@@ -1,5 +1,3 @@
-const mongodb = require("mongodb");
-const ObjectId = mongodb.ObjectId;
 const getDatabase = require("../util/database").getDatabase;
 
 exports.FetchAll = (req, res, next) => {
@@ -10,7 +8,6 @@ exports.FetchAll = (req, res, next) => {
     .find()
     .toArray()
     .then((food_items) => {
-      console.log(food_items);
       res.send(food_items);
     })
     .catch((err) => {
