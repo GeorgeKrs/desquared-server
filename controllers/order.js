@@ -14,7 +14,6 @@ exports.PlaceOrder = (req, res, next) => {
 
   io.getIO().emit("orders", {
     action: "newOrder",
-    data: res.locals.orderData,
   });
 
   res.sendStatus(200);
