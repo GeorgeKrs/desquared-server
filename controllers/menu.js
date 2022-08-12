@@ -11,6 +11,6 @@ exports.FetchAll = (req, res, next) => {
       res.send(food_items);
     })
     .catch((err) => {
-      console.log(err);
+      throw err;
     });
 };
