@@ -24,8 +24,11 @@ exports.ConvertCurrency = (req, res, next) => {
   )
     .then((res) => res.json())
     .then((data) => {
-      res.locals.orderData.totalCost_OtherCurrency =
-        data.info.rate * res.locals.orderData.totalCost_EUR;
+      let tempCost;
+      tempCost = data.info.rate * res.locals.orderData.totalCost_EUR;
+      tempCost = Math.round(tempCost * 100) / 100;
+      res.locals.orderData.totalCost_OtherCurrency = tempCost;
+
       next();
     })
     .catch((err) => {

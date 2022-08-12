@@ -5,7 +5,7 @@ exports.PlaceOrder = (req, res, next) => {
 
   database
     .collection("orders")
-    .insertOne(orderData)
+    .insertOne(res.locals.orderData)
     .catch((err) => {
       res.sendStatus(500);
       throw err;
