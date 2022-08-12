@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const CurrencyConvertor = require("../middlewares/currency-convertor");
+const CurrencyMiddleware = require("../middlewares/currency-convertor");
 const Order = require("../controllers/order");
 
-router.post("/order", CurrencyConvertor, Order.PlaceOrder);
+router.post("/order", CurrencyMiddleware.ConvertCurrency, Order.PlaceOrder);
 
 module.exports = router;
