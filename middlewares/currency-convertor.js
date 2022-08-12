@@ -1,11 +1,8 @@
 // const https = require("https");
 const fetch = require("node-fetch");
-// import fetch from ("node-fetch");
 const CURRENCY = require("../constants/currency_categories");
 
 exports.ConvertCurrency = (req, res, next) => {
-  const CURRENCY_CONVERTER_API_KEY = "5Io9mi3wLM1v6ujKFq5YBNm9f2KEKEdo";
-
   res.locals.orderData = req.body;
 
   if (res.locals.orderData.currency === CURRENCY.CATEGORIES.EUR) {
@@ -15,7 +12,7 @@ exports.ConvertCurrency = (req, res, next) => {
   }
 
   let requestOptions = {
-    headers: { apikey: CURRENCY_CONVERTER_API_KEY },
+    headers: { apikey: process.env.CURRENCY_CONVERTER_API_KEY },
   };
 
   fetch(

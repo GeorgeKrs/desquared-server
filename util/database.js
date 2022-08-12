@@ -5,11 +5,11 @@ let database;
 
 const mongoConnect = (callback) => {
   MongoClient.connect(
-    "mongodb+srv://test_user:WYmVOrb92AuKRcXq@cluster0.p7g32f8.mongodb.net/?retryWrites=true&w=majority"
+    `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.p7g32f8.mongodb.net/?retryWrites=true&w=majority`
   )
     .then((client) => {
       console.log("Connected to database.");
-      database = client.db("restaurant-app");
+      database = client.db(process.env.MONGO_DB_NAME);
       callback();
     })
     .catch((err) => {
