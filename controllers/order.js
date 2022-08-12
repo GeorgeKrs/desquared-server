@@ -1,4 +1,5 @@
 const getDatabase = require("../util/database").getDatabase;
+const io = require("../util/socket");
 
 exports.PlaceOrder = (req, res, next) => {
   const database = getDatabase();
@@ -10,6 +11,11 @@ exports.PlaceOrder = (req, res, next) => {
       res.sendStatus(500);
       throw err;
     });
+
+  io.getIO().emit("orders", {
+    action: "newOrder",
+    data: res.locals.orderData,
+  });
 
   res.sendStatus(200);
 };

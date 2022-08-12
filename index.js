@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: "*",
-    methods: ["POST", "GET"],
+    methods: ["GET", "POST"],
     credentials: true,
   })
 );
@@ -23,5 +23,12 @@ app.use(menuRoutes);
 
 mongoConnect(() => {
   app.listen(PORT);
+
+  const ioServer = app.listen(3002);
+  const io = require("./util/socket").init(ioServer);
+  io.on("connection", (socket) => {});
+
+  io.on("disconnect", (socket) => {});
+
   console.log(`Server listening on 127.0.0.1, PORT: ${PORT}`);
 });
