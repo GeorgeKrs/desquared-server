@@ -13,3 +13,19 @@ exports.PlaceOrder = (req, res, next) => {
 
   res.sendStatus(200);
 };
+
+exports.FetchOrders = (req, res, next) => {
+  const database = getDatabase();
+
+  database
+    .collection("orders")
+    .find()
+    .sort({ orderedAt: -1 })
+    .toArray()
+    .then((orders) => {
+      res.send(orders);
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
